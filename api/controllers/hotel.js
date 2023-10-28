@@ -1,7 +1,7 @@
-const Hotel = require("../models/Hotel");
+import Hotel from "../models/Hotel.js";
 
 //CREATE
-const createHotel = async (req, res, next) => {
+export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
   try {
     const savedHotel = await newHotel.save();
@@ -10,9 +10,8 @@ const createHotel = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = createHotel;
 
-const updateHotel = async (req, res, next) => {
+export const updateHotel = async (req, res, next) => {
   const id = req.params.id;
   const body = req.body;
 
@@ -27,9 +26,8 @@ const updateHotel = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = updateHotel;
 
-const deleteHotel = async (req, res, next) => {
+export const deleteHotel = async (req, res, next) => {
   const id = req.params.id;
 
   try {
@@ -39,24 +37,20 @@ const deleteHotel = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = deleteHotel;
 
 //GET
-const getHotel = async (req, res, next) => {
+export const getHotel = async (req, res, next) => {
   const id = req.params.id;
-  console.log(id);
   try {
     const hotel = await Hotel.findById(id);
-    console.log(id);
     res.status(200).send(hotel);
   } catch (error) {
     next(error);
   }
 };
-module.exports = getHotel;
 
 //GET ALL
-const getHotels = async (req, res, next) => {
+export const getHotels = async (req, res, next) => {
   const id = req.params.id;
 
   try {
@@ -66,4 +60,3 @@ const getHotels = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = getHotels;
